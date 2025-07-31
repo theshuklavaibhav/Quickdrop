@@ -1,6 +1,10 @@
 import 'package:flutter/widgets.dart';
 
 class Items {
+  String title;
+  int price;
+  bool isPurchased;
+  Items({ required this.title,required this.price,this.isPurchased=false});
   // DateTime dateTime;
   List<String> itemList = [
     'Item01'
@@ -14,12 +18,13 @@ class Items {
   getItemList() {
     return itemList;
   }
+
   final List<String> history = ['Item01', 'Item06'];
   historyItems() {
-
     return history;
   }
-    List<String> _getSuggestions(String query) {
+
+  List<String> _getSuggestions(String query) {
     if (query.isEmpty) {
       return history;
     }

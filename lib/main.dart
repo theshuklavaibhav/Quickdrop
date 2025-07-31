@@ -18,7 +18,13 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
-        primaryColor:  Colors.white
+        primaryColor:  Colors.white,
+        searchBarTheme: SearchBarThemeData(
+          backgroundColor: MaterialStateProperty.all(Colors.white),
+          elevation: MaterialStateProperty.all(1.0),
+          hintStyle: MaterialStateProperty.all(const TextStyle(color: Colors.black54)),
+          textStyle: MaterialStateProperty.all(const TextStyle(color: Colors.black)),
+        )
       ),
       home: ChangeNotifierProvider(
         create: (context)=> ItemProvider(),

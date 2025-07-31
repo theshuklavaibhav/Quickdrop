@@ -9,16 +9,17 @@ class Searchbar extends StatefulWidget {
 }
 
 class _SearchbarState extends State<Searchbar> {
-  final items = Items();
+  // final items = Items();
   @override
   Widget build(BuildContext context) {
     return SearchAnchor(
-      viewHintText: 'Search Items...',
-      viewLeading: const Icon(Icons.shop),
       builder: (BuildContext context, SearchController controller) {
         return SearchBar(
           controller: controller,
-          leading: const Icon(Icons.shop),
+          leading: Icon(Icons.search,
+          weight: 30,
+          size: 35,
+          ),
           hintText: 'Search Items...',
           onTap: () => controller.openView(),
           onChanged: (value) => controller.openView(),
@@ -26,7 +27,7 @@ class _SearchbarState extends State<Searchbar> {
         );
       },
       suggestionsBuilder: (BuildContext context, SearchController controller) {
-        final suggestions = items.getItemList();
+        final suggestions = null;
         return suggestions.map((item) {
           return ListTile(
             title: Text(item),
@@ -37,19 +38,8 @@ class _SearchbarState extends State<Searchbar> {
               );
             },
           );
-        });
-        //               return suggestions.map((item) {
-        //                 return ListTile(
-        //                   title: Text(item),
-        //                   onTap: () {
-        //                     // Set the search bar text and close the view
-        //                     controller.closeView(item);
-        //                     // You might want to navigate to a results page here
-        //                     ScaffoldMessenger.of(context).showSnackBar(
-        //                       SnackBar(content: Text('You selected: $item')),
-        //                     );
-        //                   },
-        //                 );
+         }
+       );
       },
     );
   }
