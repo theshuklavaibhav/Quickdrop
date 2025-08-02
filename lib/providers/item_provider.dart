@@ -3,13 +3,13 @@ import 'package:shoping_list_app/models/items.dart';
 import 'package:flutter/material.dart';
 
 class ItemProvider extends ChangeNotifier {
-  List<Items> _itemList = [
-    // Items(title: 'Mango', price: 60),
-    // Items(title: 'Banana', price: 12),
-  ];
+  List<Items> _itemList = [];
 
-  ItemProvider() {
-    addItems('Mango', 60);
+  void fetchInitialData() {
+    _itemList = [
+      // Items(title: 'Mango', price: 60),
+      // Items(title: 'Banana', price: 12),
+    ];
   }
 
   //------------------Making Events to perform operation------------------------
@@ -17,7 +17,7 @@ class ItemProvider extends ChangeNotifier {
   List<Items> get getItems => _itemList;
 
   //-------------------Add Items in the List-----------------------------------
-  void addItems(String title, int price) {
+  void addItems(String title, int? price) { // Changed to int?
     final newItem = Items(title: title, price: price);
     _itemList.add(newItem);
     notifyListeners();

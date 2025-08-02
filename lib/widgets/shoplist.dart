@@ -4,40 +4,39 @@ import 'package:shoping_list_app/models/items.dart';
 import 'package:shoping_list_app/providers/item_provider.dart';
 
 class Shoplist extends StatelessWidget {
-  const Shoplist({super.key});
+  const 
+  Shoplist({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Consumer<ItemProvider>(
       builder: (context, data, child) {
-        return Expanded(
-          child: ListView.builder(
-            itemCount: data.getItems.length,
-            itemBuilder: (context, index) {
-              return Card(
-                child: ListTile(
-                  leading: const Icon(Icons.check_box),
-                  title: Column(
+        return ListView.builder(
+          itemCount: data.getItems.length,
+          itemBuilder: (context, index) {
+            return Card(
+              child: ListTile(
+                leading: const Icon(Icons.check_box),
+                title: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [ 
+                    children: [
                       Text(data.getItems[index].title,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                        ),
                       ),
                       Text("Price - ${data.getItems[index].price.toString()}")
                     ]),
-                  trailing: IconButton(
-                    icon: const Icon(Icons.delete),
-                    onPressed: () {
-                      data.deleteItem(index);
-                    },
-                  ),
+                trailing: IconButton(
+                  icon: const Icon(Icons.delete),
+                  onPressed: () {
+                    data.deleteItem(index);
+                  },
                 ),
-              );
-            },
-          ),
+              ),
+            );
+          },
         );
       },
     );
