@@ -3,7 +3,13 @@ import 'package:path/path.dart';
 import 'package:provider/provider.dart';
 import './screens/homescreen.dart';
 import './providers/item_provider.dart';
+import 'package:sqflite/sqflite.dart';
 
+void printDbPath() async {
+  var databasesPath = await getDatabasesPath();
+  String path = '$databasesPath/Items.db';
+  print('Database Path: $path');
+}
 void main() {
   runApp(ChangeNotifierProvider(
     create: (context)=>ItemProvider(),

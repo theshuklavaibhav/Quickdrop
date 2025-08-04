@@ -1,31 +1,52 @@
 import 'package:provider/provider.dart';
+import 'package:shoping_list_app/database/items_db.dart';
 import 'package:shoping_list_app/models/items.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 
 class ItemProvider extends ChangeNotifier {
-  List<Items> _itemList = [];
+  List<Item> _itemList = [];
+  final ItemsDb itemsDb = ItemsDb();
 
-  void fetchInitialData() {
-    _itemList = [
-      // Items(title: 'Mango', price: 60),
-      // Items(title: 'Banana', price: 12),
-    ];
+  // void fetchInitialData() {
+  //   _itemList = [
+  //     Item(title: 'Mango', price: 60),
+  //     Item(title: 'Banana', price: 12),
+  //   ];
+  // }
+
+  Future<void> _loadItems() async {
+    _itemList = await itemsDb.getItems();
+  }
+
+  ItemProvider() {
+    _loadItems();
+    notifyListeners();
   }
 
   //------------------Making Events to perform operation------------------------
   //---------------------get Shoping Items--------------------------------------
-  List<Items> get getItems => _itemList;
+  List<Item> get getItems => _itemList;
 
   //-------------------Add Items in the List-----------------------------------
-  void addItems(String title, int? price) { // Changed to int?
-    final newItem = Items(title: title, price: price);
-    _itemList.add(newItem);
+  Future<void> addItems(String title, int? price) async {
+    print('PROVIDER: addItems called with title: $title, price: $price');
+    final newItem = Item(title: title, price: price);
+    print('PROVIDER: Inserting item into database...');
+    await itemsDb.insertItems(newItem);
+    await _loadItems();
+    notifyListeners();
+  }
+
+  Future<void> fetchAndSetItems() async {
+    _itemList = await itemsDb.getItems();
     notifyListeners();
   }
 
   //------------------------Delete Item-----------------------------------------
-  void deleteItem(int index) {
-    _itemList.removeAt(index);
+  Future<void> deleteItem(int id) async {
+    await itemsDb.deleteItem(id);
+    await _loadItems();
     notifyListeners();
   }
 }

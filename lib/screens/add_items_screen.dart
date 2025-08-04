@@ -75,24 +75,29 @@ class _AddItemsScreenState extends State<AddItemsScreen> {
                 ElevatedButton(
                   onPressed: (){
                     final title = _titleController.text;
-  final priceText = _priceController.text;
+                    final priceText = _priceController.text;
 
-  if (title.isEmpty) {
-    // Don't submit if the title is empty
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Item title cannot be empty!')),
-    );
-    return;
-  }
+                    print('ADD ITEM: Title entered: $title');
+                    print('ADD ITEM: Price entered: $priceText');
 
-  // Use int.tryParse which returns null if parsing fails
-  final int? price = priceText.isEmpty ? null : int.tryParse(priceText);
+                    if (title.isEmpty) {
+                    // Don't submit if the title is empty
+                    ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Item title cannot be empty!')),
+                    );
+                    return;
+                    }
 
-  // Use listen: false because we are calling a method, not rebuilding the UI
-  Provider.of<ItemProvider>(context, listen: false).addItems(title, price);
+                    // Use int.tryParse which returns null if parsing fails
+                    final int? price = priceText.isEmpty ? null : int.tryParse(priceText);
 
-  // Go back to the previous screen
-  Navigator.of(context).pop();
+                    print('ADD ITEM: Calling Provider.addItems with title: $title, price: $price');
+
+                    // Use listen: false because we are calling a method, not rebuilding the UI
+                    Provider.of<ItemProvider>(context, listen: false).addItems(title, price);
+
+                    // Go back to the previous screen
+                    Navigator.of(context).pop();
                   },
                   child: const Text('Add Item'),
                 )

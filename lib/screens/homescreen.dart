@@ -36,16 +36,27 @@ class _HomescreenState extends State<Homescreen> {
           ],
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: Column(
-          children: [
-            const Searchbar(),
-            const SizedBox(height: 25,),
-            // The Shoplist widget will consume the provider and display the items
-            Expanded(child: Shoplist()),
-          ],
-        ),
+      body: FutureBuilder(
+        future: Provider.of<ItemProvider>(context, listen: false).fetchAndSetItems(),
+        builder: (ctx, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          } else {
+            return Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Column(
+                children: [
+                  const Searchbar(),
+                  const SizedBox(height: 25,),
+                  // The Shoplist widget will consume the provider and display the items
+                  Expanded(child: Shoplist()),
+                ],
+              ),
+            );
+          }
+        },
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
