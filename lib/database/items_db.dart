@@ -37,7 +37,7 @@ class ItemsDb {
         await db.execute('''CREATE TABLE Items(
           id INTEGER PRIMARY KEY AUTOINCREMENT,
           itemName TEXT NOT NULL,
-          Price INTEGER,
+          price INTEGER,
           isDone INTEGER NOT NULL
           )''');
         print('DATABASE: Table created.');
@@ -55,7 +55,6 @@ class ItemsDb {
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
     print('DATABASE: Insert result: $result');
-    return result;
     return result;
   }
 
@@ -87,12 +86,4 @@ class ItemsDb {
       where: 'id=?',
       whereArgs: [item.id]);
   }
-
-  // Future<List<Item>> getItems() async {
-  //   final db = await getDatabase;
-  //   final List<Map<String, dynamic>> maps = await db.query('Items');
-  //   return List.generate(maps.length, (i) {
-  //     return Item.fromMap(maps[i]);
-  //   });
-  // }
 }

@@ -49,4 +49,11 @@ class ItemProvider extends ChangeNotifier {
     await _loadItems();
     notifyListeners();
   }
+
+  //-------------------------Updating Item--------------------------------------
+  Future<void> updateItem(Item item) async {
+    await itemsDb.updateItem(item);
+    await _loadItems();
+    notifyListeners();
+  }
 }

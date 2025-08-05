@@ -13,25 +13,45 @@ class Shoplist extends StatelessWidget {
         return ListView.builder(
           itemCount: data.getItems.length,
           itemBuilder: (context, id) {
+            final item = data.getItems[id];
             return Card(
-              child: ListTile(
-                leading: const Icon(Icons.check_box),
-                title: Column(
+              child: Container(
+                decoration: BoxDecoration(
+                  // Use a conditional (ternary) operator on the 'color'property
+                  borderRadius: BorderRadius.all(Radius.circular(15)),
+                  
+                  color: item.isPurchased ? Colors.greenAccent: const Color.fromARGB(255, 255, 249, 133),
+                ),
+                child: ListTile(
+                  leading: Checkbox(
+                    value: item.isPurchased,
+                    onChanged: (value) {
+                      item.isPurchased = value ?? false;
+                      data.updateItem(item);
+                    },
+                  ),
+                  title: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(data.getItems[id].title,
-                      style: const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                       ),
+                      Text(
+                        item.title,
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          // decoration: item.isPurchased
+                          //     ? TextDecoration.lineThrough
+                          //     : TextDecoration.none,
+                        ),
                       ),
-                      Text("Price - ${data.getItems[id].price.toString()}")
-                    ]),
-                trailing: IconButton(
-                  icon: const Icon(Icons.delete),
-                  onPressed: () {
-                    data.deleteItem(data.getItems[id].id!);
-                  },
+                      Text("Price - ${item.price.toString()}"),
+                    ],
+                  ),
+                  trailing: IconButton(
+                    icon: const Icon(Icons.delete),
+                    onPressed: () {
+                      data.deleteItem(data.getItems[id].id!);
+                    },
+                  ),
                 ),
               ),
             );
