@@ -1,4 +1,4 @@
-# Flutter Shopping List: A Technical Showcase for SDE Internships
+# Flutter Shopping List: Quickdro
 
 This project is a feature-rich shopping list application built to demonstrate a strong understanding of mobile development, software architecture, and the best practices required for a professional software engineering role. It is not just a functional app but a carefully engineered product designed for scalability, performance, and maintainability.
 
@@ -10,12 +10,12 @@ A quick visual overview of the application's core functionality.
 
 | Homescreen | Add Item Screen |
 | :---: | :---: |
-| *![https://drive.google.com/file/d/1VvgRhQe8sVEEMY9Zmi8uFw2EVaPn_2KO/view?usp=sharing]* | *![https://drive.google.com/file/d/1qOXhSWO8bFJHLjByDLDjpYWFaUPg0HTB/view]* |
+| ![Homescreen](https://drive.google.com/uc?export=view&id=1VvgRhQe8sVEEMY9Zmi8uFw2EVaPn_2KO) | ![Add Item](https://drive.google.com/uc?export=view&id=1qOXhSWO8bFJHLjByDLDjpYWFaUPg0HTB) |
 | **Fig 1.** The main screen displaying the shopping list, built with a `ListView.builder` for UI efficiency. | **Fig 2.** The screen for adding a new item, with input validation to ensure data integrity. |
 
 | Real-Time Search | Mark as Purchased |
 | :---: | :---: |
-| *![https://drive.google.com/file/d/1kfjh81rhkX9XD9S4FhpawQ-Zsxzejwqd/view]* | *![https://drive.google.com/file/d/1NxSgp78Luv6MLwy9HcNHFxtBXjJHqsT_/view]* |
+| ![Search](https://drive.google.com/uc?export=view&id=1kfjh81rhkX9XD9S4FhpawQ-Zsxzejwqd) | ![Mark as Purchased](https://drive.google.com/uc?export=view&id=1NxSgp78Luv6MLwy9HcNHFxtBXjJHqsT_) |
 | **Fig 3.** The search bar provides instant, client-side filtering by updating the application's state. | **Fig 4.** An item's state is updated in the local database, with immediate visual feedback in the UI. |
 
 ## Features & Technical Implementation
