@@ -1,4 +1,4 @@
-# Flutter Shopping List: Quickdro
+# Flutter Shopping List: Quickdrop
 
 This project is a feature-rich shopping list application built to demonstrate a strong understanding of mobile development, software architecture, and the best practices required for a professional software engineering role. It is not just a functional app but a carefully engineered product designed for scalability, performance, and maintainability.
 
